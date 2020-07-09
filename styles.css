@@ -100,7 +100,7 @@ body {
 #cert {
 	width: 100vmax;
 	/*padding: 0 calc(100vmax / 11);*/
-	height: 77.27vmax;
+	/*height: 77.27vmax;*/
 	position: relative;
 }
 

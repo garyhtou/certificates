@@ -16,7 +16,7 @@
 	display: flex;
 	justify-content: space-evenly;
 	width: 50%;
-	margin: 5px auto 0 auto;
+	margin: 20px auto 0 auto;
 	text-align: center
 }
 
@@ -92,8 +92,8 @@ svg g path {
 	text-align: center;
 	margin: auto;
 	font-size: 25px;
-	margin-bottom: 100px;
-	margin-top: 50px;
+	margin-bottom: 50px;
+	margin-top: 15px;
 	font: 400 25px/1.3 'Calibri', Helvetica, sans-serif;
 }
 
