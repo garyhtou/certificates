@@ -1,0 +1,144 @@
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+.cert-background {
+	max-width: 100%;
+	padding: 10px;
+}
+
+.cert {
+	border: 10px;
+	border-style: solid;
+	border-color: #5598ee;
+	padding: 10px;
+}
+
+.hack-logo {
+	display: flex;
+	justify-content: space-evenly;
+	width: 50%;
+	margin: 5px auto 0 auto;
+	text-align: center
+}
+
+.sponsor {
+	display: block;
+	padding: 0;
+	margin: 0;
+}
+
+.hack-logo img {
+	max-width: 200px;
+	display: block;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+.hacker-name {
+	text-align: center;
+	margin: 35px auto 10px auto;
+	font-size: 50px;
+	font: 400 100px/1.3 'Cookie', Helvetica, sans-serif;
+	font-size: 70px;
+}
+
+.hackathon-title {
+	text-align: center;
+	margin-top: 15px;
+	margin-bottom: 0;
+	font-size: 50px;
+	font: 400 60px/1.3 'Calibri', Helvetica, sans-serif;
+	color: #2b2b2b;
+	text-shadow: 1px 1px 0px #ededed, 4px 4px 0px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+	margin: 0;
+}
+
+.hacker-name p {
+	margin: 0;
+	padding: 0;
+	font: 'Cookie', cursive;
+}
+
+.star {
+	vertical-align: center;
+	font-size: 50px;
+	color: #ebd34d;
+}
+
+svg {
+	height: 1em;
+	width: 1em;
+	top: .125em;
+	position: relative;
+}
+
+svg path,
+svg g path {
+	fill: currentColor;
+}
+
+.left {
+	margin-right: 5px;
+}
+
+.right {
+	margin-left: 5px;
+}
+
+.type {
+	text-align: center;
+	margin: auto;
+	font-size: 25px;
+	margin-bottom: 100px;
+	margin-top: 50px;
+	font: 400 25px/1.3 'Calibri', Helvetica, sans-serif;
+}
+
+​.signatures {
+	text-align: center;
+	margin: auto;
+}
+
+.signatures:after {
+	clear: both;
+	/* This property clears floating elements! */
+	content: "";
+	display: block;
+}
+
+.signatures>p {
+	vertical-align: top;
+	display: inline-block;
+}
+
+.sign {
+	/* change depending on the amount of signatures.
+	 To find percentage use the formula 100/# of signatures */
+	width: 33.333%;
+	float: left;
+	text-align: center;
+	margin: auto;
+}
+
+.sign p {
+	padding: 2px;
+}
+
+.signature {
+	font: 400 100px/1.3 'Arizonia', Helvetica, sans-serif;
+	font-size: 40px;
+	margin: 10px auto;
+}
+
+.sign-title {
+	font: 400 10px/1.3 'Berkshire Swash', Helvetica, sans-serif;
+	color: #2b2b2b;
+	text-shadow: 1px 1px 0px #ededed, 1px 1px 0px rgba(0, 0, 0, 0.15);
+}
