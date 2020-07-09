@@ -1,227 +1,251 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Hackathon Certificate</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script src="javascript.js"></script>
 
-    <!-- LINKS FOR THE CERTIFICATE -->
+<head>
+	<title>Hackathon Certificate</title>
+	<link rel="stylesheet" href="styles.css" />
+	<script src="javascript.js"></script>
 
-    <!-- For the title of the signaturers -->
-    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet">
-    <!-- Used for organizer and leader signatures -->
-    <link href="https://fonts.googleapis.com/css2?family=Arizonia&display=swap" rel="stylesheet">
-    <!-- Used for hacker's name -->
-    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+	<!-- LINKS FOR THE CERTIFICATE -->
 
-    <!-- STYLES FOR THE CERTIFICATE -->
+	<!-- For the title of the signaturers -->
+	<link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet">
+	<!-- Used for organizer and leader signatures -->
+	<link href="https://fonts.googleapis.com/css2?family=Arizonia&display=swap" rel="stylesheet">
+	<!-- Used for hacker's name -->
+	<link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
 
-     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-        }
-        .cert-background {
-            max-width: 100%;
-            padding: 10px;
-        }
-        .cert {
-            border: 10px;
-            border-style: solid;
-            border-color: #5598ee;
-            padding: 10px;
-        }
-        .hack-logo {
-            display:flex;
-            justify-content:space-evenly;
-            width: 50%;
-            margin: 5px auto 0 auto;
-            text-align: center
-        }
-        .sponsor {
-            display:block;
-            padding: 0;
-            margin: 0;
-        }
-        .hack-logo img {
-            max-width:200px;
-            display:block;
-            width:100%;
-            padding: 0;
-            margin: 0;
-        }
-        .hacker-name {
-            text-align:center;
-            margin: 35px auto 10px auto;
-            font-size: 50px;
-            font: 400 100px/1.3 'Cookie', Helvetica, sans-serif;
-            font-size: 70px;
-        }
-        .hackathon-title {
-            text-align: center;
-            margin-top: 15px;
-            margin-bottom: 0;
-            font-size: 50px;
-            font: 400 60px/1.3 'Calibri', Helvetica, sans-serif;
-            color: #2b2b2b;
-            text-shadow: 1px 1px 0px #ededed, 4px 4px 0px rgba(0,0,0,0.15);
-        }
-        h1 {
-            margin: 0;
-        }
-        .hacker-name p {
-            margin: 0;
-            padding: 0;
-            font: 'Cookie', cursive;
-        }
-        .star {
-            vertical-align: center;
-            font-size: 50px;
-            color: #ebd34d;
-        }
-        svg {
-            height: 1em;
-            width: 1em;
-            top: .125em;
-            position: relative;
-        }
-        svg path,
-        svg g path {
-            fill: currentColor;
-        }
-        .left {
-            margin-right: 5px;
-        }
-        .right {
-            margin-left: 5px;
-        }
-        .type {
-            text-align: center;
-            margin: auto;
-            font-size: 25px;
-            margin-bottom: 100px;
-            margin-top: 50px;
-            font: 400 25px/1.3 'Calibri', Helvetica, sans-serif;
-        }
-        ​.signatures {
-            text-align:center;
-            margin: auto;
-        }
-        .signatures:after {
-            clear:both; /* This property clears floating elements! */
-            content:"";
-            display:block;
-        }
-        .signatures > p {
-            vertical-align:top;
-            display:inline-block;   
-        }
-        .sign {
-            /* change depending on the amount of signatures.
-            To find percentage use the formula 100/# of signatures */
-            width: 33.333%; 
-            float: left;
-            text-align: center;
-            margin: auto;
-        }
-        .sign p {
-            padding: 2px;
-        }
-        .signature {
-            font: 400 100px/1.3 'Arizonia', Helvetica, sans-serif;
-            font-size: 40px;
-            margin: 10px auto;
-        }
-        .sign-title {
-            font: 400 10px/1.3 'Berkshire Swash', Helvetica, sans-serif;
-            color: #2b2b2b;
-            text-shadow: 1px 1px 0px #ededed, 1px 1px 0px rgba(0,0,0,0.15);
-        }
-    </style>
+</head>
 
-    <!-- END OF STYLES FOR THE CERTIFICATE -->
-  </head>
-  <body>
-    <div class="header">
-      <a href="https://hacktheworld.synhacks.org/" class="logo"
-        ><img src="images/hacktheworld2020.png"
-      /></a>
-      <div class="header-right">
-        <a href="http://synhacks.org/"><img src="images/synhacks.png" /></a>
-      </div>
-    </div>
+<body>
+	<div class="header">
+		<a href="https://hacktheworld.synhacks.org/" class="logo"><img src="images/hacktheworld2020.png" /></a>
+		<div class="header-right">
+			<a href="http://synhacks.org/"><img src="images/synhacks.png" /></a>
+		</div>
+	</div>
 
-    <!-- THIS IS THE CERTIFICATE DESIGN -->
-    <div id="cert">
+	<div id="cert">
+		<h1>loading...</h1>
+	</div>
+	<template id="cert-temp">
+		<!-- STYLES FOR THE CERTIFICATE -->
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				width: 100%;
+			}
 
-    	<div class="cert-background">
+			.cert-background {
+				max-width: 100%;
+				padding: 10px;
+			}
 
-        <div class="cert">
-            
-            <div class="hack-logo">
-                <span class="sponsor">
-                    <img src="images/htclogo.png" class="">
-                </span>
-                <span class="sponsor">
-                    <img src="images/missionbit_logo_vertical_transparentbackground.png" class="">
-                </span>
-            </div>
+			.cert {
+				border: 10px;
+				border-style: solid;
+				border-color: #5598ee;
+				padding: 10px;
+			}
 
-            <div class="hackathon-title">
-                <h1>Hack the Cloud</h1>
-            </div>
-          
-            <div class="hacker-name" id="name">John Doe</div>
+			.hack-logo {
+				display: flex;
+				justify-content: space-evenly;
+				width: 50%;
+				margin: 5px auto 0 auto;
+				text-align: center
+			}
 
-            <div class="type">
-                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="star left svg-inline--fa fa-star fa-w-18. star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                  <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                </svg>
-                <span id="role">For the participation of Hack the Fog's 2020 Hack the Cloud Hackathon</span>
-                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="svg-inline--fa fa-star fa-w-18 right star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                  <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                </svg>
-            </div>
-            
-            <div class="signatures">
-                <div class="sign">
-                    <p class="signature">Rafael Cenzano</p>
-                    <p class="sign-title">Co-Director</p>
-                </div>
-                <div class="sign">
-                    <p class="signature">Cappillen Lee</p>
-                    <p class="sign-title">Co-Director</p>
-                </div>
-                <div class="sign">
-                    <p class="signature">Christina Ortega</p>
-                    <p class="sign-title">CEO of MissionBit</p>
-                </div>
-            </div>
-        </div>
+			.sponsor {
+				display: block;
+				padding: 0;
+				margin: 0;
+			}
 
-     </div>
+			.hack-logo img {
+				max-width: 200px;
+				display: block;
+				width: 100%;
+				padding: 0;
+				margin: 0;
+			}
+
+			.hacker-name {
+				text-align: center;
+				margin: 35px auto 10px auto;
+				font-size: 50px;
+				font: 400 100px/1.3 'Cookie', Helvetica, sans-serif;
+				font-size: 70px;
+			}
+
+			.hackathon-title {
+				text-align: center;
+				margin-top: 15px;
+				margin-bottom: 0;
+				font-size: 50px;
+				font: 400 60px/1.3 'Calibri', Helvetica, sans-serif;
+				color: #2b2b2b;
+				text-shadow: 1px 1px 0px #ededed, 4px 4px 0px rgba(0, 0, 0, 0.15);
+			}
+
+			h1 {
+				margin: 0;
+			}
+
+			.hacker-name p {
+				margin: 0;
+				padding: 0;
+				font: 'Cookie', cursive;
+			}
+
+			.star {
+				vertical-align: center;
+				font-size: 50px;
+				color: #ebd34d;
+			}
+
+			svg {
+				height: 1em;
+				width: 1em;
+				top: .125em;
+				position: relative;
+			}
+
+			svg path,
+			svg g path {
+				fill: currentColor;
+			}
+
+			.left {
+				margin-right: 5px;
+			}
+
+			.right {
+				margin-left: 5px;
+			}
+
+			.type {
+				text-align: center;
+				margin: auto;
+				font-size: 25px;
+				margin-bottom: 100px;
+				margin-top: 50px;
+				font: 400 25px/1.3 'Calibri', Helvetica, sans-serif;
+			}
+
+			​.signatures {
+				text-align: center;
+				margin: auto;
+			}
+
+			.signatures:after {
+				clear: both;
+				/* This property clears floating elements! */
+				content: "";
+				display: block;
+			}
+
+			.signatures>p {
+				vertical-align: top;
+				display: inline-block;
+			}
+
+			.sign {
+				/* change depending on the amount of signatures.
+				 To find percentage use the formula 100/# of signatures */
+				width: 33.333%;
+				float: left;
+				text-align: center;
+				margin: auto;
+			}
+
+			.sign p {
+				padding: 2px;
+			}
+
+			.signature {
+				font: 400 100px/1.3 'Arizonia', Helvetica, sans-serif;
+				font-size: 40px;
+				margin: 10px auto;
+			}
+
+			.sign-title {
+				font: 400 10px/1.3 'Berkshire Swash', Helvetica, sans-serif;
+				color: #2b2b2b;
+				text-shadow: 1px 1px 0px #ededed, 1px 1px 0px rgba(0, 0, 0, 0.15);
+			}
+		</style>
+		<!-- END OF STYLES FOR THE CERTIFICATE -->
+
+
+		<!-- THIS IS THE CERTIFICATE DESIGN -->
+		<div class="cert-background">
+
+			<div class="cert">
+
+				<div class="hack-logo">
+					<span class="sponsor">
+						<img src="images/htclogo.png" class="">
+					</span>
+					<span class="sponsor">
+						<img src="images/missionbit_logo_vertical_transparentbackground.png" class="">
+					</span>
+				</div>
+
+				<div class="hackathon-title">
+					<h1>Hack the Cloud</h1>
+				</div>
+
+				<div class="hacker-name" id="name">John Doe</div>
+
+				<div class="type">
+					<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star"
+						class="star left svg-inline--fa fa-star fa-w-18. star" role="img" xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 576 512">
+						<path fill="currentColor"
+							d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
+						</path>
+					</svg>
+					<span id="role">For the participation of Hack the Fog's 2020 Hack the Cloud Hackathon</span>
+					<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star"
+						class="svg-inline--fa fa-star fa-w-18 right star" role="img" xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 576 512">
+						<path fill="currentColor"
+							d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
+						</path>
+					</svg>
+				</div>
+
+				<div class="signatures">
+					<div class="sign">
+						<p class="signature">Rafael Cenzano</p>
+						<p class="sign-title">Co-Director</p>
+					</div>
+					<div class="sign">
+						<p class="signature">Cappillen Lee</p>
+						<p class="sign-title">Co-Director</p>
+					</div>
+					<div class="sign">
+						<p class="signature">Christina Ortega</p>
+						<p class="sign-title">CEO of MissionBit</p>
+					</div>
+				</div>
+			</div>
+
+	</template>
 
 	</div>
 	<!-- THIS IS THE END OF CERTIFICATE DESIGN -->
 
-    <div class="fab" onclick="download()">
-      <?xml version="1.0" encoding="iso-8859-1"?>
-      <svg
-        version="1.1"
-        id="downloadIcon"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        x="0px"
-        y="0px"
-        viewBox="0 0 477.827 477.827"
-        style="enable-background: new 0 0 477.827 477.827;"
-        xml:space="preserve"
-      >
-        <g>
-          <g>
-            <path
-              d="M441.537,160.625c1.489-7.981,2.243-16.082,2.253-24.201C443.699,61.019,382.498-0.035,307.093,0.056
+	<div class="fab" onclick="download()">
+		<?xml version="1.0" encoding="iso-8859-1"?>
+		<svg version="1.1" id="downloadIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+			x="0px" y="0px" viewBox="0 0 477.827 477.827" style="enable-background: new 0 0 477.827 477.827;"
+			xml:space="preserve">
+			<g>
+				<g>
+					<path d="M441.537,160.625c1.489-7.981,2.243-16.082,2.253-24.201C443.699,61.019,382.498-0.035,307.093,0.056
 			c-57.402,0.069-108.63,36.034-128.194,89.999c-35.029-13.944-74.73,3.148-88.675,38.177c-1.207,3.032-2.195,6.146-2.956,9.319
 			c-55.932,8.365-94.492,60.488-86.127,116.42c7.502,50.163,50.596,87.275,101.316,87.254h85.333
 			c9.426,0,17.067-7.641,17.067-17.067c0-9.426-7.641-17.067-17.067-17.067h-85.333c-37.703,0-68.267-30.564-68.267-68.267
@@ -230,21 +254,19 @@
 			c9.264-55.733,61.954-93.403,117.687-84.139c55.733,9.264,93.403,61.954,84.139,117.687c-0.552,3.323-1.269,6.617-2.146,9.869
 			c-1.962,7.124,0.883,14.701,7.049,18.773c31.416,20.845,39.985,63.212,19.139,94.628c-12.617,19.015-33.9,30.468-56.72,30.522
 			h-51.2c-9.426,0-17.067,7.641-17.067,17.067c0,9.426,7.641,17.067,17.067,17.067h51.2
-			c56.554-0.053,102.357-45.943,102.303-102.497C477.798,208.625,464.526,180.06,441.537,160.625z"
-            />
-          </g>
-        </g>
-        <g>
-          <g>
-            <path
-              d="M353.07,363.292c-6.614-6.387-17.099-6.387-23.712,0l-56.235,56.201V170.558c0-9.426-7.641-17.067-17.067-17.067
+			c56.554-0.053,102.357-45.943,102.303-102.497C477.798,208.625,464.526,180.06,441.537,160.625z" />
+				</g>
+			</g>
+			<g>
+				<g>
+					<path d="M353.07,363.292c-6.614-6.387-17.099-6.387-23.712,0l-56.235,56.201V170.558c0-9.426-7.641-17.067-17.067-17.067
 			c-9.426,0-17.067,7.641-17.067,17.067v248.934l-56.201-56.201c-6.78-6.548-17.584-6.36-24.132,0.419
 			c-6.388,6.614-6.388,17.099,0,23.713l85.333,85.333c6.656,6.673,17.463,6.687,24.136,0.03c0.01-0.01,0.02-0.02,0.031-0.03
-			l85.333-85.333C360.038,380.644,359.85,369.84,353.07,363.292z"
-            />
-          </g>
-        </g>
-      </svg>
-    </div>
-  </body>
+			l85.333-85.333C360.038,380.644,359.85,369.84,353.07,363.292z" />
+				</g>
+			</g>
+		</svg>
+	</div>
+</body>
+
 </html>

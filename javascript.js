@@ -19,14 +19,15 @@ function checkCert() {
       correctHash = correctHash & correctHash;
     }
   }
+  correctHash += ""; //turn into string
   console.log("correctHash: " + correctHash);
 
   if (correctHash == hash) {
     //wait until elements exist
     var observer = new MutationObserver(function (mutations, me) {
       var elements = [
-        document.getElementById("name"),
-        document.getElementById("role"),
+        document.getElementById("cert"),
+        document.getElementById("cert-temp")
       ];
       var missing = false;
       for (var i = 0; i < elements.length; i++) {
@@ -35,11 +36,14 @@ function checkCert() {
         }
       }
       if (!missing) {
-        //TODO DISPLAY CERT
-			document.getElementById("name").innerText = name;
-			document.getElementById("role").innerText = role;
+        var certHolder = document.getElementById("cert");
+        var cert = document.getElementById("cert-temp").content.cloneNode(true);
+        certHolder.innerHTML = "";
+        certHolder.appendChild(cert);
+        document.getElementById("name").innerText = name;
+        document.getElementById("role").innerText = role;
 
-
+        destroyCertTemp();
         me.disconnect(); // stop observing
         return;
       }
@@ -50,14 +54,37 @@ function checkCert() {
       subtree: true,
     });
   } else {
-    //SHOW ERROR MESSAGE
+    console.log("incorrect");
+    var observer = new MutationObserver(function (mutations, me) {
+      var elements = [
+        document.getElementById("cert"),
+        document.getElementById("cert-temp")
+      ];
+      var missing = false;
+      for (var i = 0; i < elements.length; i++) {
+        if (!elements[i]) {
+          missing = true;
+        }
+      }
+      if (!missing) {
+        var certHolder = document.getElementById("cert");
+        certHolder.innerHTML = "<h1>error message</h1>";
+
+        destroyCertTemp();
+        me.disconnect(); // stop observing
+        return;
+      }
+    });
   }
 }
 
-function download() {
-	var certificate = document.getElementById("cert");
-	
+function destroyCertTemp() {
+  document.getElementById("cert-temp").innerHTML = "";
+}
 
+
+function download() {
+  var certificate = document.getElementById("cert");
 }
 
 checkCert();
