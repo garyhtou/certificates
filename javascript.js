@@ -27,7 +27,7 @@ function checkCert() {
     var observer = new MutationObserver(function (mutations, me) {
       var elements = [
         document.getElementById("cert"),
-        document.getElementById("cert-temp")
+        document.getElementById("cert-temp"),
       ];
       var missing = false;
       for (var i = 0; i < elements.length; i++) {
@@ -55,26 +55,17 @@ function checkCert() {
     });
   } else {
     console.log("incorrect");
-    var observer = new MutationObserver(function (mutations, me) {
-      var elements = [
-        document.getElementById("cert"),
-        document.getElementById("cert-temp")
-      ];
-      var missing = false;
-      for (var i = 0; i < elements.length; i++) {
-        if (!elements[i]) {
-          missing = true;
-        }
-      }
-      if (!missing) {
-        var certHolder = document.getElementById("cert");
-        certHolder.innerHTML = "<h1>error message</h1>";
+    window.onload = function () {
+      var certHolder = document.getElementById("cert");
+      var error = document.getElementById("error").content.cloneNode(true);
+      certHolder.innerHTML = "";
+      certHolder.appendChild(error);
 
-        destroyCertTemp();
-        me.disconnect(); // stop observing
-        return;
-      }
-    });
+		destroyCertTemp();
+		
+		var fab = document.getElementsByClassName("fab")[0];
+		fab.style.display = "none";
+    };
   }
 }
 
@@ -82,9 +73,8 @@ function destroyCertTemp() {
   document.getElementById("cert-temp").innerHTML = "";
 }
 
-
 function download() {
-  var certificate = document.getElementById("cert");
+  window.print();
 }
 
 checkCert();
