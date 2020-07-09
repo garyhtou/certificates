@@ -99,6 +99,13 @@ body {
 
 #cert {
 	max-width: 100vw;
+	padding: 0 calc(100vw / 11);
 	height: calc(100vw / 11 * 8.5);
 	position: relative;
+}
+
+@media only print {
+	.header, .fab {
+		display: none;
+	}
 }
