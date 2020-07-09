@@ -1,12 +1,7 @@
-body {
-	margin: 0;
-	padding: 0;
-	width: 100%;
-}
-
 .cert-background {
 	max-width: 100%;
 	padding: 10px;
+	height: 100%;
 }
 
 .cert {
@@ -14,6 +9,7 @@ body {
 	border-style: solid;
 	border-color: #5598ee;
 	padding: 10px;
+	height: 100%;
 }
 
 .hack-logo {

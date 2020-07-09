@@ -98,14 +98,18 @@ body {
 }
 
 #cert {
-	max-width: 100vw;
-	padding: 0 calc(100vw / 11);
-	height: calc(100vw / 11 * 8.5);
+	width: 100vmax;
+	/*padding: 0 calc(100vmax / 11);*/
+	height: 77.27vmax;
 	position: relative;
 }
 
 @media only print {
 	.header, .fab {
 		display: none;
+	}
+
+	@page {
+		size: landscape;
 	}
 }
