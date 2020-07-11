@@ -2,32 +2,28 @@ function checkCert() {
    const urlParams = new URLSearchParams(window.location.search);
 
    //mandatory params
-   const name = urlParams.get("name");
-   const role = urlParams.get("role");
    const type = urlParams.get("type");
    const hash = urlParams.get("key");
 
-   var combined = name + role + type;
-
-   var correctHash = 0;
-   if (combined.length != 0) {
-      for (var i = 0; i < combined.length; i++) {
-         var char = combined.charCodeAt(i);
-         correctHash = (correctHash << 5) - correctHash + char;
-         correctHash = correctHash & correctHash;
+   var allParams = [];
+   var flattenedParams = [];
+   for (var entry of urlParams.entries()) {
+      if (entry[0] != "key") {
+         allParams.push(entry);
+         flattenedParams.push(entry[0]);
+         flattenedParams.push(entry[1]);
       }
    }
-   correctHash += ""; //turn into string
 
-   if (!(name || role || type || hash)) {
+   var correctHash = keyHash(flattenedParams);
+   console.log(hash + " | " + correctHash);
+
+   if (!(type || hash)) {
       console.log("no params");
       window.onload = function () {
          homePage();
-
-         var fab = document.getElementsByClassName("fab")[0];
-         fab.style.display = "none";
       };
-   } else if (correctHash == hash && certType.includes(type)) {
+   } else if (hash == correctHash && certType.includes(type)) {
       //wait until elements exist
       var observer = new MutationObserver(function (mutations, me) {
          var elements = [document.getElementById("cert")];
@@ -46,9 +42,13 @@ function checkCert() {
                if (request.status >= 200 && request.status < 400) {
                   var resp = request.responseText;
 
-                  document.querySelector("#cert").innerHTML = resp;
-                  document.getElementById("name").innerText = name;
-                  document.getElementById("role").innerText = role;
+						document.querySelector("#cert").innerHTML = resp;
+						for(var entry of allParams) {
+							var elements = document.querySelectorAll("[cert-replace=" + entry[0] + "]");
+							for(var element of elements) {
+								element.innerText = entry[1];
+							}
+						}
                   console.log("loaded cert");
                } else {
                   error();
@@ -69,10 +69,43 @@ function checkCert() {
       console.log("invalid cert");
       window.onload = function () {
          invalidCert();
-
-         var fab = document.getElementsByClassName("fab")[0];
-         fab.style.display = "none";
       };
+   }
+
+   function keyHash(params) {
+      //[key1, value1, key2, value2, ...]
+
+      if (params.length % 2 != 0) {
+         return (
+            "ERROR: odd number of arguments (" +
+            params.length +
+            ") [" +
+            Math.random() +
+            "]"
+         ); //random number prevents correct hash
+      }
+      var correctHash = 0;
+      for (var i = 0; i < params.length; i += 2) {
+         correctHash +=
+            parseInt(hashParam(params[i] + "|" + params[i + 1])) / params.length;
+         console.log("Correct Hash: " + correctHash);
+      }
+      correctHash = hashParam(correctHash);
+      console.log("Correct Hash: " + correctHash);
+      return correctHash;
+
+      function hashParam(input) {
+         input += ""; //convert to string
+         var output = 0;
+         if (input.length != 0) {
+            for (var i = 0; i < input.length; i++) {
+               var char = input.charCodeAt(i);
+               output = (output << 5) - output + char;
+               output = output & output;
+            }
+         }
+         return output;
+      }
    }
 }
 
@@ -81,6 +114,9 @@ function homePage() {
    var error = document.getElementById("home").content.cloneNode(true);
    certHolder.innerHTML = "";
    certHolder.appendChild(error);
+
+   var fab = document.getElementsByClassName("fab")[0];
+   fab.style.display = "none";
 }
 
 function invalidCert() {
@@ -88,6 +124,9 @@ function invalidCert() {
    var error = document.getElementById("invalid").content.cloneNode(true);
    certHolder.innerHTML = "";
    certHolder.appendChild(error);
+
+   var fab = document.getElementsByClassName("fab")[0];
+   fab.style.display = "none";
 }
 
 function error() {
@@ -95,6 +134,9 @@ function error() {
    var error = document.getElementById("error").content.cloneNode(true);
    certHolder.innerHTML = "";
    certHolder.appendChild(error);
+
+   var fab = document.getElementsByClassName("fab")[0];
+   fab.style.display = "none";
 }
 
 function download() {
@@ -122,11 +164,11 @@ function certResize() {
       // );
       var windowWidth = window.innerWidth;
       var windowHeight = window.innerHeight;
-      var newRootSize = (Math.min(
-         windowWidth,
-         (windowHeight - headerHeight) * 1.29411764706
-      )/800) + "px";
-		document.getElementsByTagName("html")[0].style.fontSize = newRootSize;
+      var newRootSize =
+         Math.min(windowWidth, (windowHeight - headerHeight) * 1.29411764706) /
+            800 +
+         "px";
+      document.getElementsByTagName("html")[0].style.fontSize = newRootSize;
    }
 }
 
