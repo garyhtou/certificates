@@ -3,33 +3,42 @@
    <head>
       <title>synHacks Certificate</title>
       <link rel="stylesheet" href="styles.css" />
+      <script src="certs/index.js"></script>
       <script src="javascript.js"></script>
-      <script
-         type="text/javascript"
-         src="http://code.jquery.com/jquery-latest.min.js"
-      ></script>
    </head>
 
    <body>
-      <div class="header">
-         <a href="https://hacktheworld.synhacks.org/" class="logo"
-            ><img src="images/hacktheworld2020.png"
-         /></a>
-         <div class="header-right">
-            <a href="http://synhacks.org/"><img src="images/synhacks.png" /></a>
+      <div id="screen">
+         <div class="header">
+            <a href="https://hacktheworld.synhacks.org/" class="logo"
+               ><img src="images/hacktheworld2020.png"
+            /></a>
+            <div class="header-right">
+               <a href="http://synhacks.org/"
+                  ><img src="images/synhacks.png"
+               /></a>
+            </div>
+         </div>
+
+         <div id="cert">
+            <h1>loading...</h1>
          </div>
       </div>
-
-      <div id="cert">
-         <h1>loading...</h1>
-      </div>
-
       <template id="home">
          <h1>Home</h1>
-         <object type="text/html" data="file.html"></object>
       </template>
 
       <template id="error">
+         <div class="error">
+            <h1>Error</h1>
+            <p>
+               Can't find certificate type. Please contact hello@synhacks.org to
+               report the error.
+            </p>
+         </div>
+      </template>
+
+      <template id="invalid">
          <div class="error">
             <h1>Error</h1>
             <p>
@@ -49,7 +58,6 @@
             x="0px"
             y="0px"
             viewBox="0 0 477.827 477.827"
-            style="enable-background: new 0 0 477.827 477.827;"
             xml:space="preserve"
          >
             <g>
