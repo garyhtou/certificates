@@ -21,15 +21,18 @@
          </div>
 
          <div id="cert">
-            <h1>loading...</h1>
+            <div class="message">
+               <h1>loading...</h1>
+            </div>
          </div>
       </div>
       <template id="home">
-         <h1>Home</h1>
+			<div class="message">
+         <h1>Home</h1></div>
       </template>
 
       <template id="error">
-         <div class="error">
+         <div class="message">
             <h1>Error</h1>
             <p>
                Can't find certificate type. Please contact hello@synhacks.org to
@@ -39,7 +42,7 @@
       </template>
 
       <template id="invalid">
-         <div class="error">
+         <div class="message">
             <h1>Error</h1>
             <p>
                This certificate is invalid. Please contact hello@synhacks.org
