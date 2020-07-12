@@ -144,7 +144,11 @@ body {
 		max-width: 10in !important;
       max-height: 7.5in !important;
       overflow: hidden;
-   }
+	}
+	
+	:root {
+		font-size: 1.2px !important;
+	}
 
    @page {
       size: landscape;

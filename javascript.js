@@ -16,7 +16,6 @@ function checkCert() {
    }
 
    var correctHash = keyHash(flattenedParams);
-   console.log(hash + " | " + correctHash);
 
    if (!(type || hash)) {
       console.log("no params");
@@ -88,10 +87,8 @@ function checkCert() {
       for (var i = 0; i < params.length; i += 2) {
          correctHash +=
             parseInt(hashParam(params[i] + "|" + params[i + 1])) / params.length;
-         console.log("Correct Hash: " + correctHash);
       }
       correctHash = hashParam(correctHash);
-      console.log("Correct Hash: " + correctHash);
       return correctHash;
 
       function hashParam(input) {
@@ -106,7 +103,7 @@ function checkCert() {
          }
          return output;
       }
-   }
+	}
 }
 
 function homePage() {
@@ -158,10 +155,6 @@ function certResize() {
    };
 
    function resize() {
-      // width: 100vw;
-      // max-width: CALC(
-      // 	(100vh - 105px) * 1.29411764706
-      // );
       var windowWidth = window.innerWidth;
       var windowHeight = window.innerHeight;
       var newRootSize =
