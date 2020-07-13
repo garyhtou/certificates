@@ -141,12 +141,14 @@ function download() {
 }
 
 function certResize() {
-   var headerHeight;
+	var headerHeight;
+	var additionalMargin;
    window.onload = function () {
-      headerHeight = document.getElementsByClassName("header")[0].offsetHeight;
+		headerHeight = document.getElementsByClassName("header")[0].offsetHeight;
+		additionalMargin = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--additional-margin"), 10);
       document.documentElement.style.setProperty(
          "--header-height",
-         headerHeight + "px"
+         (headerHeight) + "px"
       );
       resize();
    };
@@ -158,7 +160,7 @@ function certResize() {
       var windowWidth = window.innerWidth;
       var windowHeight = window.innerHeight;
       var newRootSize =
-         Math.min(windowWidth, (windowHeight - headerHeight) * 1.29411764706) /
+         Math.min(windowWidth, (windowHeight - headerHeight - additionalMargin) * 1.29411764706) /
             800 +
          "px";
       document.getElementsByTagName("html")[0].style.fontSize = newRootSize;
