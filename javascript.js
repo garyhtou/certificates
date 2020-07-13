@@ -41,13 +41,16 @@ function checkCert() {
                if (request.status >= 200 && request.status < 400) {
                   var resp = request.responseText;
 
-						document.querySelector("#cert").innerHTML = resp;
-						for(var entry of allParams) {
-							var elements = document.querySelectorAll("[cert-replace=" + entry[0] + "]");
-							for(var element of elements) {
-								element.innerText = entry[1];
-							}
-						}
+                  document.querySelector("#cert").innerHTML = resp;
+                  for (var entry of allParams) {
+                     var elements = document.querySelectorAll(
+                        "[cert-replace=" + entry[0] + "]"
+                     );
+                     for (var element of elements) {
+                        element.innerText = entry[1];
+                     }
+                  }
+						snapshot();
                   console.log("loaded cert");
                } else {
                   error();
@@ -86,7 +89,8 @@ function checkCert() {
       var correctHash = 0;
       for (var i = 0; i < params.length; i += 2) {
          correctHash +=
-            parseInt(hashParam(params[i] + "|" + params[i + 1])) / params.length;
+            parseInt(hashParam(params[i] + "|" + params[i + 1])) /
+            params.length;
       }
       correctHash = hashParam(correctHash);
       return correctHash;
@@ -103,7 +107,7 @@ function checkCert() {
          }
          return output;
       }
-	}
+   }
 }
 
 function homePage() {
@@ -137,18 +141,38 @@ function error() {
 }
 
 function download() {
-   window.print();
+   var imgData = canvasSnapshot.toDataURL("image/jpeg", 1);
+   var doc = new jsPDF("l", "in", "letter");
+   doc.addImage(imgData, "JPEG", 0, 0, 11, 8.5);
+   doc.save("synHacks Certificate.pdf");
+}
+
+var canvasSnapshot;
+function snapshot() {
+   html2canvas(document.querySelector("#cert"), {
+      scale: 4,
+      onrendered: function (canvas) {
+         canvasSnapshot = canvas;
+      },
+   }).then(canvas => {
+		canvasSnapshot = canvas;
+	});
 }
 
 function certResize() {
-	var headerHeight;
-	var additionalMargin;
+   var headerHeight;
+   var additionalMargin;
    window.onload = function () {
-		headerHeight = document.getElementsByClassName("header")[0].offsetHeight;
-		additionalMargin = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--additional-margin"), 10);
+      headerHeight = document.getElementsByClassName("header")[0].offsetHeight;
+      additionalMargin = parseFloat(
+         getComputedStyle(document.documentElement).getPropertyValue(
+            "--additional-margin"
+         ),
+         10
+      );
       document.documentElement.style.setProperty(
          "--header-height",
-         (headerHeight) + "px"
+         headerHeight + "px"
       );
       resize();
    };
@@ -160,7 +184,10 @@ function certResize() {
       var windowWidth = window.innerWidth;
       var windowHeight = window.innerHeight;
       var newRootSize =
-         Math.min(windowWidth, (windowHeight - headerHeight - additionalMargin) * 1.29411764706) /
+         Math.min(
+            windowWidth,
+            (windowHeight - headerHeight - additionalMargin) * 1.29411764706
+         ) /
             800 +
          "px";
       document.getElementsByTagName("html")[0].style.fontSize = newRootSize;
