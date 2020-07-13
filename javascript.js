@@ -50,8 +50,7 @@ function checkCert() {
                         element.innerText = entry[1];
                      }
                   }
-						snapshot();
-                  console.log("loaded cert");
+                  certResize();
                } else {
                   error();
                }
@@ -151,48 +150,46 @@ var canvasSnapshot;
 function snapshot() {
    html2canvas(document.querySelector("#cert"), {
       scale: 4,
-      onrendered: function (canvas) {
-         canvasSnapshot = canvas;
-      },
-   }).then(canvas => {
-		canvasSnapshot = canvas;
-	});
+   }).then((canvas) => {
+      canvasSnapshot = canvas;
+   });
 }
 
 function certResize() {
    var headerHeight;
    var additionalMargin;
-   window.onload = function () {
-      headerHeight = document.getElementsByClassName("header")[0].offsetHeight;
-      additionalMargin = parseFloat(
-         getComputedStyle(document.documentElement).getPropertyValue(
-            "--additional-margin"
-         ),
-         10
-      );
-      document.documentElement.style.setProperty(
-         "--header-height",
-         headerHeight + "px"
-      );
-      resize();
-   };
-   window.onresize = function () {
-      resize();
-   };
+   headerHeight = document.getElementsByClassName("header")[0].offsetHeight;
+   additionalMargin = parseFloat(
+      getComputedStyle(document.documentElement).getPropertyValue(
+         "--additional-margin"
+      ),
+      10
+   );
+   document.documentElement.style.setProperty(
+      "--header-height",
+      headerHeight + "px"
+   );
 
-   function resize() {
-      var windowWidth = window.innerWidth;
-      var windowHeight = window.innerHeight;
-      var newRootSize =
-         Math.min(
-            windowWidth,
-            (windowHeight - headerHeight - additionalMargin) * 1.29411764706
-         ) /
-            800 +
-         "px";
-      document.getElementsByTagName("html")[0].style.fontSize = newRootSize;
-   }
+   var windowWidth = window.innerWidth;
+   var windowHeight = window.innerHeight;
+   var newRootSize =
+      Math.min(
+         windowWidth,
+         (windowHeight - headerHeight - additionalMargin) * 1.29411764706
+      ) /
+         800 +
+      "px";
+   document.getElementsByTagName("html")[0].style.fontSize = newRootSize;
 }
 
-certResize();
+window.onload = function () {
+   certResize();
+};
+window.onresize = function () {
+   certResize();
+};
 checkCert();
+
+window.onload = () => {
+   snapshot();
+};
