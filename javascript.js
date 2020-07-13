@@ -19,9 +19,9 @@ function checkCert() {
 
    if (!(type || hash)) {
       console.log("no params");
-      window.onload = function () {
-         homePage();
-      };
+      window.addEventListener
+         ? window.addEventListener("load", homePage, false)
+         : window.attachEvent && window.attachEvent("onload", homePage);
    } else if (hash == correctHash && certType.includes(type)) {
       //wait until elements exist
       var observer = new MutationObserver(function (mutations, me) {
@@ -68,9 +68,9 @@ function checkCert() {
       });
    } else {
       console.log("invalid cert");
-      window.onload = function () {
-         invalidCert();
-      };
+      window.addEventListener
+         ? window.addEventListener("load", invalidCert, false)
+         : window.attachEvent && window.attachEvent("onload", invalidCert);
    }
 
    function keyHash(params) {
@@ -110,31 +110,42 @@ function checkCert() {
 }
 
 function homePage() {
-   var certHolder = document.getElementById("cert");
-   var error = document.getElementById("home").content.cloneNode(true);
-   certHolder.innerHTML = "";
-   certHolder.appendChild(error);
-
-   var fab = document.getElementsByClassName("fab")[0];
-   fab.style.display = "none";
+   console.log("loaded home");
+   loadMessage("messages/home.html");
+   hideFAB();
 }
 
 function invalidCert() {
-   var certHolder = document.getElementById("cert");
-   var error = document.getElementById("invalid").content.cloneNode(true);
-   certHolder.innerHTML = "";
-   certHolder.appendChild(error);
-
-   var fab = document.getElementsByClassName("fab")[0];
-   fab.style.display = "none";
+   console.log("loaded invalidCert");
+   loadMessage("messages/invalidCert.html");
+   hideFAB();
 }
 
 function error() {
-   var certHolder = document.getElementById("cert");
-   var error = document.getElementById("error").content.cloneNode(true);
-   certHolder.innerHTML = "";
-   certHolder.appendChild(error);
+   console.log("loaded error");
+   loadMessage("messages/error.html");
+   hideFAB();
+}
 
+function loadMessage(path) {
+   var request = new XMLHttpRequest();
+   request.open("GET", path, true);
+   request.onload = function () {
+      if (request.status >= 200 && request.status < 400) {
+         var resp = request.responseText;
+         var message = document.createElement("div");
+         message.className = "message";
+         message.innerHTML = resp;
+         document.querySelector("#certWrapper").innerHTML = "";
+         document.querySelector("#certWrapper").appendChild(message);
+      } else if (path != "messages/error.html") {
+         error();
+      }
+   };
+   request.send();
+}
+
+function hideFAB() {
    var fab = document.getElementsByClassName("fab")[0];
    fab.style.display = "none";
 }
@@ -182,14 +193,15 @@ function certResize() {
    document.getElementsByTagName("html")[0].style.fontSize = newRootSize;
 }
 
-window.onload = function () {
-   certResize();
-};
 window.onresize = function () {
    certResize();
 };
-checkCert();
-
-window.onload = () => {
+window.addEventListener
+   ? window.addEventListener("load", doOnload, false)
+   : window.attachEvent && window.attachEvent("onload", doOnload);
+function doOnload() {
+   certResize();
    snapshot();
-};
+}
+
+checkCert();

@@ -11,8 +11,9 @@
 function createCertURL(baseURL, params) {
    var params = Array.prototype.slice.call(arguments, 0);
    params.shift(); //remove baseURL
-	if (params.length > 0 && Array.isArray(params[1])) { //if array formula
-		//oganize arrays into rows
+   if (params.length > 0 && Array.isArray(params[1])) {
+      //if array formula
+      //oganize arrays into rows
       var sortedParams = [];
       for (var i = 0; i < params[1].length; i++) {
          var row = [];
@@ -23,11 +24,13 @@ function createCertURL(baseURL, params) {
          sortedParams.push(row);
       }
       var results = [];
-      for (var singleParams of sortedParams) { //run each row though url creator
+      for (var singleParams of sortedParams) {
+         //run each row though url creator
          results.push(createSingleURL(baseURL, singleParams));
       }
       return results;
-   } else if (isEmptyRow(params)) { //if not array formula and empty
+   } else if (isEmptyRow(params)) {
+      //if not array formula and empty
       throw new Error("missing params");
    } else {
       return createSingleURL(baseURL, params);
@@ -35,13 +38,14 @@ function createCertURL(baseURL, params) {
 
    function createSingleURL(singleBaseURL, singleParams) {
       //skip empty rows. Only applies to array formulas since empty non-arrayformula calls would have been caught
-      if(isEmptyRow(singleParams)) {
-			return;
-		}
+      if (isEmptyRow(singleParams)) {
+         return;
+      }
 
       var certURL = singleBaseURL + "?"; //create url base
       var singleKeyValueSet = [];
-      for (var i = 0; i < singleParams.length; i += 2) { //adding url params
+      for (var i = 0; i < singleParams.length; i += 2) {
+         //adding url params
          if (singleParams[i] != "key") {
             certURL += singleParams[i] + "=" + singleParams[i + 1] + "&";
             singleKeyValueSet.push(singleParams[i]);
@@ -51,20 +55,21 @@ function createCertURL(baseURL, params) {
       var key = keyHash(singleKeyValueSet); //create key
       certURL += "key=" + key;
       return encodeURI(certURL.trim()); //encode as url (turn spaces into %20)
-	}
-	
-	function isEmptyRow(params) { //check is values in params from google sheet is empty
-		var empty = true;
+   }
+
+   function isEmptyRow(params) {
+      //check is values in params from google sheet is empty
+      var empty = true;
       for (var i = 1; i < params.length; i += 2) {
-			if(empty && params[i].trim().length != 0) {
-				empty = false;
-			}
+         if (empty && params[i].trim().length != 0) {
+            empty = false;
+         }
       }
       if (empty) {
          return true;
-		}
-		return false;
-	}
+      }
+      return false;
+   }
 
    function keyHash(args) {
       if (args.length % 2 != 0) {

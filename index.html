@@ -5,21 +5,20 @@
       <link rel="stylesheet" href="styles.css" />
       <script src="certs/index.js"></script>
       <script src="javascript.js"></script>
-		<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
-		
+      <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
    </head>
 
    <body>
       <div id="screen">
          <div class="header">
-            <a href="https://hacktheworld.synhacks.org/" class="logo"
-               ><img src="images/hacktheworld2020.png"
-            /></a>
+            <a href="http://synhacks.org/" class="logo">
+               <img src="images/synhacks.png" />
+            </a>
             <div class="header-right">
-               <a href="http://synhacks.org/"
-                  ><img src="images/synhacks.png"
-               /></a>
+               <a href="https://hacktheworld.synhacks.org/" class="logo">
+                  <img src="images/hacktheworld2020.png" />
+               </a>
             </div>
          </div>
          <div id="certWrapper">
@@ -30,32 +29,6 @@
             </div>
          </div>
       </div>
-      <template id="home">
-         <div class="message">
-            <h1>Home</h1>
-         </div>
-      </template>
-
-      <template id="error">
-         <div class="message">
-            <h1>Error</h1>
-            <p>
-               Can't find certificate type. Please contact hello@synhacks.org to
-               report the error.
-            </p>
-         </div>
-      </template>
-
-      <template id="invalid">
-         <div class="message">
-            <h1>Error</h1>
-            <p>
-               This certificate is invalid. Please contact hello@synhacks.org
-               for help.
-            </p>
-         </div>
-      </template>
-
       <div class="fab" onclick="download()">
          <?xml version="1.0" encoding="iso-8859-1"?>
          <svg

@@ -137,10 +137,7 @@ body {
 
 #certWrapper {
    margin: 0;
-	/* height: 100%; */
-	display: flex;
-	justify-content: center;
-	align-items: center;
+   padding: 0;
 }
 
 @media only print {
