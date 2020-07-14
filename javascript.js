@@ -40,8 +40,10 @@ function checkCert() {
             request.onload = function () {
                if (request.status >= 200 && request.status < 400) {
                   var resp = request.responseText;
-
+                  var temp = document.createElement("div");
+                  temp.innerHTML = resp;
                   document.querySelector("#cert").innerHTML = resp;
+                  // document.querySelector("#cert").appendChild(temp);
                   for (var entry of allParams) {
                      var elements = document.querySelectorAll(
                         "[cert-replace=" + entry[0] + "]"
@@ -51,6 +53,7 @@ function checkCert() {
                      }
                   }
                   certResize();
+                  snapshot();
                } else {
                   error();
                }
@@ -151,10 +154,12 @@ function hideFAB() {
 }
 
 function download() {
-   var imgData = canvasSnapshot.toDataURL("image/jpeg", 1);
-   var doc = new jsPDF("l", "in", "letter");
-   doc.addImage(imgData, "JPEG", 0, 0, 11, 8.5);
-   doc.save("synHacks Certificate.pdf");
+   if (canvasSnapshot) {
+      var imgData = canvasSnapshot.toDataURL("image/jpeg", 1);
+      var doc = new jsPDF("l", "in", "letter");
+      doc.addImage(imgData, "JPEG", 0, 0, 11, 8.5);
+      doc.save("synHacks Certificate.pdf");
+   }
 }
 
 var canvasSnapshot;
@@ -197,11 +202,7 @@ window.onresize = function () {
    certResize();
 };
 window.addEventListener
-   ? window.addEventListener("load", doOnload, false)
-   : window.attachEvent && window.attachEvent("onload", doOnload);
-function doOnload() {
-   certResize();
-   snapshot();
-}
+   ? window.addEventListener("load", certResize, false)
+   : window.attachEvent && window.attachEvent("onload", certResize);
 
 checkCert();
