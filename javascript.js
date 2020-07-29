@@ -198,11 +198,16 @@ function certResize() {
    document.getElementsByTagName("html")[0].style.fontSize = newRootSize;
 }
 
+function onLoadAction() {
+   certResize();
+	setTimeout(snapshot(), 5000);
+}
+
 window.onresize = function () {
    certResize();
 };
 window.addEventListener
-   ? window.addEventListener("load", certResize, false)
-   : window.attachEvent && window.attachEvent("onload", certResize);
+   ? window.addEventListener("load", onLoadAction, false)
+   : window.attachEvent && window.attachEvent("onload", onLoadAction);
 
 checkCert();
