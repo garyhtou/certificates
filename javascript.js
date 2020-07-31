@@ -15,14 +15,26 @@ function checkCert() {
       }
    }
 
-   var correctHash = keyHash(flattenedParams);
+   var certExists = false;
+   var salt = "";
+   for (cert of certType) {
+		if (cert[0] == type) {
+			certExists = true;
+         if (cert.length > 1) {
+				salt = cert[1];
+         }
+         break;
+      }
+   }
+	
+	var correctHash = keyHash(salt, flattenedParams);
 
    if (!(type || hash)) {
       console.log("no params");
       window.addEventListener
          ? window.addEventListener("load", homePage, false)
          : window.attachEvent && window.attachEvent("onload", homePage);
-   } else if (hash == correctHash && certType.includes(type)) {
+   } else if (hash == correctHash && certExists) {
       //wait until elements exist
       var observer = new MutationObserver(function (mutations, me) {
          var elements = [document.getElementById("cert")];
@@ -76,7 +88,7 @@ function checkCert() {
          : window.attachEvent && window.attachEvent("onload", invalidCert);
    }
 
-   function keyHash(params) {
+   function keyHash(salt, params) {
       //[key1, value1, key2, value2, ...]
 
       if (params.length % 2 != 0) {
@@ -94,7 +106,7 @@ function checkCert() {
             parseInt(hashParam(params[i] + "|" + params[i + 1])) /
             params.length;
       }
-      correctHash = hashParam(correctHash);
+      correctHash = hashParam(correctHash + salt);
       return correctHash;
 
       function hashParam(input) {
@@ -200,7 +212,7 @@ function certResize() {
 
 function onLoadAction() {
    certResize();
-	setTimeout(snapshot(), 5000);
+   setTimeout(snapshot(), 5000);
 }
 
 window.onresize = function () {
