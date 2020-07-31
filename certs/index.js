@@ -3,4 +3,4 @@
 
 //First item is the cert type, the second item is the hash salt for this cert. The hash salt can be any random text and is optional.
 //Ex. ["test", "mysalt here"]
-const certType = [["test"], ["hackthecloud", "Sd2s21"], ["htw20"]];
+const certType = [["test", "randomTextHere"], ["hackthecloud", "Sd2s21"], ["htw20"]];
