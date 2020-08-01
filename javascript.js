@@ -7,7 +7,7 @@ function checkCert() {
 
    var allParams = [];
    var flattenedParams = [];
-   for (var entry of urlParams.entries()) {
+   for (let entry of urlParams.entries()) {
       if (entry[0] != "key") {
          allParams.push(entry);
          flattenedParams.push(entry[0]);
@@ -39,7 +39,7 @@ function checkCert() {
       var observer = new MutationObserver(function (mutations, me) {
          var elements = [document.getElementById("cert")];
          var missing = false;
-         for (var i = 0; i < elements.length; i++) {
+         for (let i = 0; i < elements.length; i++) {
             if (!elements[i]) {
                missing = true;
             }
@@ -56,11 +56,11 @@ function checkCert() {
                   temp.innerHTML = resp;
                   document.querySelector("#cert").innerHTML = resp;
                   // document.querySelector("#cert").appendChild(temp);
-                  for (var entry of allParams) {
+                  for (let entry of allParams) {
                      var elements = document.querySelectorAll(
                         "[cert-replace=" + entry[0] + "]"
                      );
-                     for (var element of elements) {
+                     for (let element of elements) {
                         element.innerText = entry[1];
                      }
                   }
@@ -101,7 +101,7 @@ function checkCert() {
          ); //random number prevents correct hash
       }
       var correctHash = 0;
-      for (var i = 0; i < params.length; i += 2) {
+      for (let i = 0; i < params.length; i += 2) {
          correctHash +=
             parseInt(hashParam(params[i] + "|" + params[i + 1])) /
             params.length;
@@ -113,7 +113,7 @@ function checkCert() {
          input += ""; //convert to string
          var output = 0;
          if (input.length != 0) {
-            for (var i = 0; i < input.length; i++) {
+            for (let i = 0; i < input.length; i++) {
                var char = input.charCodeAt(i);
                output = (output << 5) - output + char;
                output = output & output;

@@ -66,8 +66,11 @@ body {
    float: right;
 }
 
-.header-right a img {
-   height: 45px;
+.credit {
+	height: 45px;
+	margin: 15px 10px 0 10px;
+	font-size: 20px;
+	vertical-align: bottom;
 }
 
 /* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */

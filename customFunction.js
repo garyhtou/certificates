@@ -16,16 +16,16 @@ function createCertURL(baseURL, salt, params) {
       //if array formula
       //oganize arrays into rows
       var sortedParams = [];
-      for (var i = 0; i < params[1].length; i++) {
+      for (let i = 0; i < params[1].length; i++) {
          var row = [];
-         for (var k = 0; k < params.length; k += 2) {
+         for (let k = 0; k < params.length; k += 2) {
             row.push(params[k]);
             row.push(params[k + 1][i][0]);
          }
          sortedParams.push(row);
       }
       var results = [];
-      for (var singleParams of sortedParams) {
+      for (let singleParams of sortedParams) {
          //run each row though url creator
          results.push(createSingleURL(salt, baseURL, singleParams));
       }
@@ -45,7 +45,7 @@ function createCertURL(baseURL, salt, params) {
 
       var certURL = singleBaseURL + "?"; //create url base
       var singleKeyValueSet = [];
-      for (var i = 0; i < singleParams.length; i += 2) {
+      for (let i = 0; i < singleParams.length; i += 2) {
          //adding url params
          if (singleParams[i] != "key") {
             certURL += singleParams[i] + "=" + singleParams[i + 1] + "&";
@@ -61,7 +61,7 @@ function createCertURL(baseURL, salt, params) {
    function isEmptyRow(params) {
       //check is values in params from google sheet is empty
       var empty = true;
-      for (var i = 1; i < params.length; i += 2) {
+      for (let i = 1; i < params.length; i += 2) {
          if (empty && params[i].trim().length != 0) {
             empty = false;
          }
@@ -79,7 +79,7 @@ function createCertURL(baseURL, salt, params) {
          );
       }
       var correctHash = 0;
-      for (var i = 0; i < args.length; i += 2) {
+      for (let i = 0; i < args.length; i += 2) {
          correctHash +=
             parseInt(hashParam(args[i] + "|" + args[i + 1])) / args.length;
       }
@@ -90,7 +90,7 @@ function createCertURL(baseURL, salt, params) {
          input += ""; //convert to string
          var output = 0;
          if (input.length != 0) {
-            for (var i = 0; i < input.length; i++) {
+            for (let i = 0; i < input.length; i++) {
                var char = input.charCodeAt(i);
                output = (output << 5) - output + char;
                output = output & output;
