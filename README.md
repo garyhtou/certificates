@@ -103,9 +103,9 @@ Alternatively, you can send out these links through other mediums such as Slack 
       - change the cert's salt (this will allow you to re-issue new certificate using the same cert type)
 
 ## Contributors
-System designed by [Gary Tou](https://github.com/garytou2).
+System designed by [Gary Tou](https://github.com/garyhtou).
 
 Special thanks to [Rafael Cenzano](https://github.com/RafaelCenzano), [Marv](https://github.com/malee31), [Cap Lee](https://github.com/calee14), and [Michael Schwamborn](https://github.com/mschwamborn) for designing for certificates for [Hack the World 2020](https://hacktheworld.synhacks.org/) and [Hack the Cloud](https://cloud.hackthefog.com/) and fixing some CSS issues.
 
 ## Questions?
-Feel free to shoot me ([Gary Tou](https://github.com/garytou2)) a message. Contact information found at [`https://garytou.com`](https://garytou.com).
+Feel free to shoot me ([Gary Tou](https://github.com/garyhtou)) a message. Contact information found at [`https://garytou.com`](https://garytou.com).
